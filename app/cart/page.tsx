@@ -5,8 +5,15 @@ import { motion } from 'framer-motion'
 import { ShoppingCart, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 
+// Define the type for a cart item
+type CartItem = {
+  name: string;
+  price: number;
+  // You can add more fields here if necessary
+}
+
 export default function Cart() {
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState<CartItem[]>([])  // Type the cart state as an array of CartItem objects
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
@@ -15,12 +22,13 @@ export default function Cart() {
     calculateTotal(savedCart)
   }, [])
 
-  const calculateTotal = (cartItems) => {
+  // Specify the type for cartItems
+  const calculateTotal = (cartItems: CartItem[]) => {
     const newTotal = cartItems.reduce((sum, item) => sum + item.price, 0)
     setTotal(newTotal)
   }
 
-  const removeFromCart = (index) => {
+  const removeFromCart = (index: number) => {  // Specify index type as number
     const newCart = [...cart]
     newCart.splice(index, 1)
     setCart(newCart)
@@ -79,4 +87,3 @@ export default function Cart() {
     </div>
   )
 }
-
