@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Play } from 'lucide-react'
 
 const channels = [
   {
@@ -79,15 +78,9 @@ const ChannelPreview = () => {
               <div className="p-6">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-xl font-bold">{channel.name}</h3>
-                  <span className="text-red-500 text-sm font-medium">
-                    {channel.viewers} watching
-                  </span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">{channel.category}</span>
-                  <div className="flex items-center">
-                    <span>{channel.rating}</span>
-                  </div>
                 </div>
               </div>
             </motion.div>
