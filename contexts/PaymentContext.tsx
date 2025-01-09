@@ -2,8 +2,9 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
-// Define a type for the cart item
+// Define a type for the cart item, including the `name` property
 type CartItem = {
+  name: string // Add the `name` property here
   price: number
   // You can add other properties here if necessary
 }
