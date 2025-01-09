@@ -14,7 +14,7 @@ export default function OrderSummary({ onNext }: OrderSummaryProps) {
       <h2 className="text-2xl font-bold text-white mb-4">Order Summary</h2>
       {cart.map((item, index) => (
         <div key={index} className="flex justify-between items-center mb-2">
-          <span className="text-gray-300">{item.name} Plan</span>
+          <span className="text-gray-300">{item.name} Plan</span> {/* Display the name of the plan */}
           <span className="text-white font-bold">${item.price.toFixed(2)}</span>
         </div>
       ))}
