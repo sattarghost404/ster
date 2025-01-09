@@ -2,7 +2,11 @@
 
 import { usePayment } from '@/contexts/PaymentContext'
 
-export default function PaymentConfirmation({ onPrev }) {
+interface PaymentConfirmationProps {
+  onPrev: () => void;
+}
+
+export default function PaymentConfirmation({ onPrev }: PaymentConfirmationProps) {
   const { paymentMethod, selectedBank, total, completePayment } = usePayment()
 
   return (
@@ -32,4 +36,3 @@ export default function PaymentConfirmation({ onPrev }) {
     </div>
   )
 }
-
