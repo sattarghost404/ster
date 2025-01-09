@@ -1,3 +1,5 @@
+'use client'  // Add this at the top of the file
+
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin } from 'lucide-react'
@@ -10,7 +12,6 @@ export default function Contact() {
     message: ''
   })
 
-  // Specify the type for the event parameter
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prevState => ({ ...prevState, [name]: value }))
