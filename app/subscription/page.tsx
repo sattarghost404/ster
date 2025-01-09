@@ -5,7 +5,20 @@ import { motion } from 'framer-motion'
 import { Check, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
-const plans = [
+// Define the types for the plan and feature
+type Feature = {
+  name: string
+  included: boolean
+}
+
+type Plan = {
+  name: string
+  price: number
+  popular?: boolean
+  features: Feature[]
+}
+
+const plans: Plan[] = [
   {
     name: "Basic",
     price: 9.99,
@@ -52,7 +65,7 @@ const plans = [
   }
 ]
 
-const FeatureRow = ({ feature, included }) => (
+const FeatureRow = ({ feature, included }: { feature: string, included: boolean }) => (
   <li className="flex items-center space-x-3">
     {included ? (
       <Check className="flex-shrink-0 w-5 h-5 text-green-500" />
@@ -64,10 +77,10 @@ const FeatureRow = ({ feature, included }) => (
 )
 
 export default function Subscription() {
-  const [hoveredPlan, setHoveredPlan] = useState(null)
+  const [hoveredPlan, setHoveredPlan] = useState<number | null>(null)
   const router = useRouter()
 
-  const addToCart = (plan) => {
+  const addToCart = (plan: Plan) => {
     const cart = JSON.parse(localStorage.getItem('cart') || '[]')
     cart.push(plan)
     localStorage.setItem('cart', JSON.stringify(cart))
@@ -148,4 +161,3 @@ export default function Subscription() {
     </div>
   )
 }
-
