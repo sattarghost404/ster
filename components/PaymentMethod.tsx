@@ -5,7 +5,12 @@ import { usePayment } from '@/contexts/PaymentContext'
 import { CreditCard } from 'lucide-react'
 import Image from 'next/image'
 
-export default function PaymentMethod({ onNext, onPrev }) {
+interface PaymentMethodProps {
+  onNext: () => void;
+  onPrev: () => void;
+}
+
+export default function PaymentMethod({ onNext, onPrev }: PaymentMethodProps) {
   const { setPaymentMethod } = usePayment()
   const [isClient, setIsClient] = useState(false)
 
@@ -13,7 +18,7 @@ export default function PaymentMethod({ onNext, onPrev }) {
     setIsClient(true)
   }, [])
 
-  const handleMethodSelection = (method) => {
+  const handleMethodSelection = (method: string) => {
     setPaymentMethod(method)
     onNext()
   }
@@ -56,4 +61,3 @@ export default function PaymentMethod({ onNext, onPrev }) {
     </div>
   )
 }
-
