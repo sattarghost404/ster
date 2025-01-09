@@ -2,8 +2,14 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
+// Define a type for the cart item
+type CartItem = {
+  price: number
+  // You can add other properties here if necessary
+}
+
 type PaymentContextType = {
-  cart: any[]
+  cart: CartItem[]
   total: number
   paymentMethod: string
   selectedBank: string
@@ -15,7 +21,7 @@ type PaymentContextType = {
 const PaymentContext = createContext<PaymentContextType | undefined>(undefined)
 
 export const PaymentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState<CartItem[]>([])
   const [total, setTotal] = useState(0)
   const [paymentMethod, setPaymentMethod] = useState('')
   const [selectedBank, setSelectedBank] = useState('')
@@ -23,7 +29,9 @@ export const PaymentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem('cart') || '[]')
     setCart(savedCart)
-    setTotal(savedCart.reduce((sum, item) => sum + item.price, 0))
+    setTotal(
+      savedCart.reduce((sum: number, item: CartItem) => sum + item.price, 0)
+    )
   }, [])
 
   const completePayment = () => {
@@ -61,4 +69,3 @@ export const usePayment = () => {
   }
   return context
 }
-
