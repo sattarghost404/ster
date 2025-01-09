@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin } from 'lucide-react'
@@ -12,12 +10,13 @@ export default function Contact() {
     message: ''
   })
 
-  const handleChange = (e) => {
+  // Specify the type for the event parameter
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prevState => ({ ...prevState, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Here you would typically send the form data to your backend
     console.log('Form submitted:', formData)
@@ -132,4 +131,3 @@ export default function Contact() {
     </div>
   )
 }
-
