@@ -2,7 +2,11 @@
 
 import { usePayment } from '@/contexts/PaymentContext'
 
-export default function OrderSummary({ onNext }) {
+interface OrderSummaryProps {
+  onNext: () => void;
+}
+
+export default function OrderSummary({ onNext }: OrderSummaryProps) {
   const { cart, total } = usePayment()
 
   return (
@@ -29,4 +33,3 @@ export default function OrderSummary({ onNext }) {
     </div>
   )
 }
-
