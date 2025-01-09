@@ -12,10 +12,15 @@ const moroccanBanks = [
   { name: 'Crédit Agricole du Maroc', logo: '/images/credit-agricole.png' },
 ]
 
-export default function BankSelection({ onNext, onPrev }) {
+type BankSelectionProps = {
+  onNext: () => void
+  onPrev: () => void
+}
+
+export default function BankSelection({ onNext, onPrev }: BankSelectionProps) {
   const { selectedBank, setSelectedBank } = usePayment()
 
-  const handleBankSelection = (bank) => {
+  const handleBankSelection = (bank: string) => {
     setSelectedBank(bank)
     onNext()
   }
@@ -46,4 +51,3 @@ export default function BankSelection({ onNext, onPrev }) {
     </div>
   )
 }
-
