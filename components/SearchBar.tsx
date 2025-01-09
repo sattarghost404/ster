@@ -20,10 +20,12 @@ const mockSearchResults = [
 
 export default function SearchBar() {
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState([])
+  
+  // Define the type of results state
+  const [results, setResults] = useState<Array<{ title: string; type: string }>>([])
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSearch = async (e) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
 
@@ -87,4 +89,3 @@ export default function SearchBar() {
     </div>
   )
 }
-
